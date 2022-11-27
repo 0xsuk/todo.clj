@@ -1,8 +1,8 @@
 (ns todo.view.main
-  (:require [hiccup.core :as hc]))
+  (:require [todo.view.layout :as layout]))
 
 (defn home-view [req]
-  (-> (list
-       [:h1 "Home"]
-       [:a {:href "/todo"} "TODOs"])
-      hc/html))
+  (->> [:section.card
+        [:h2 "Home"]
+        [:a {:href "/todo"} "TODOs"]]
+       (layout/common req)))

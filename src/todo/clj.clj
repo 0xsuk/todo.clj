@@ -1,6 +1,7 @@
 (ns todo.clj
   (:require [compojure.core :refer [routes]]
             [ring.adapter.jetty :as server]
+            [ring.middleware.resource :as resource]
             [todo.handler.main :refer [main-routes]]
             [todo.handler.todo :refer [todo-routes]]
             [todo.middleware :refer [wrap-dev]]
@@ -21,7 +22,8 @@
    (routes
     todo-routes
     main-routes)
-   (wrap wrap-dev (:dev env))))
+   (wrap wrap-dev (:dev env))
+   (wrap resource/wrap-resource "public"))) ; resouces directory is default resource directory of leiningen. No need to specify.
 
 (defn start-server []
   (when-not @server
