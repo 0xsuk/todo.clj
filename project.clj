@@ -6,7 +6,8 @@
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [ring "1.4.0"]
                  [compojure "1.4.0"]
-                 [environ "1.0.1"]]
+                 [environ "1.0.1"]
+                 [hiccup "1.0.5"]]
   :main ^:skip-aot todo.clj
   :target-path "target/%s"
   :plugins [[lein-environ "1.0.1"]]

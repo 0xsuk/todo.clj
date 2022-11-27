@@ -1,6 +1,7 @@
 (ns todo.handler.todo
   (:require [compojure.core :refer [defroutes context GET POST]]
-            [todo.util.response :as res]))
+            [todo.util.response :as res]
+            [todo.view.todo :as view]))
 
 (def todo-list
   [{:title "todo1"}
@@ -9,15 +10,8 @@
    {:title "todo4"}
    {:title "todo5"}])
 
-(defn todo-index-view [req]
-  `("<h1>TODOs</h1>"
-    "<ul>"
-    ~@(for [{:keys [title]} todo-list]
-        (str "<li>" title "</li>"))
-    "</ul>"))
-
 (defn todo-index [req]
-  (-> (todo-index-view req)
+  (-> (view/todo-index-view req todo-list)
       res/response
       res/html))
 
