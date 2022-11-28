@@ -1,19 +1,14 @@
 (ns todo.handler.todo
   (:require [compojure.core :refer [defroutes context GET POST]]
+            [todo.db.todo :as todo]
             [todo.util.response :as res]
             [todo.view.todo :as view]))
 
-(def todo-list
-  [{:title "todo1"}
-   {:title "todo2"}
-   {:title "todo3"}
-   {:title "todo4"}
-   {:title "todo5"}])
-
 (defn todo-index [req]
-  (-> (view/todo-index-view req todo-list)
-      res/response
-      res/html))
+  (let [todo-list (todo/find-todo-all)]
+    (-> (view/todo-index-view req todo-list)
+        res/response
+        res/html)))
 
 (defn todo-new [req] "TODO new")
 (defn todo-new-post [req] "TODO new post")

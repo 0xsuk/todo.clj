@@ -8,6 +8,9 @@ Download from http://example.com/FIXME.
 
 ## Usage
 
+Create postgreSQL database from terminal
+`createdb todo_clj_dev`
+
 FIXME: explanation
 
     $ java -jar todo.clj-0.1.0-standalone.jar [args]
